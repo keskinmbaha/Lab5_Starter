@@ -7,9 +7,9 @@ function init() {
   var selection = document.getElementById("horn-select");
   imageChange(selection);
   audioChange(selection);
+  sliderChange();
 
   const jsConfetti = new JSConfetti();
-
   buttonClick(jsConfetti);
 }
 
@@ -54,6 +54,10 @@ function sliderChange (){
   var element = document.querySelector("div > img");
 
   slider.addEventListener('input', function(){
+    var audio = document.getElementsByClassName("hidden")[0];
+    var volume = slider.value / 100.0;
+    audio.volume = volume;
+
     if(slider.value == 0){
       element.src = "assets/icons/volume-level-0.svg"
     }
@@ -80,19 +84,16 @@ function buttonClick (jsConfetti){
 
   button.addEventListener('click', function() {
     var selection = document.getElementById("horn-select");
+    var audio = document.getElementsByClassName("hidden")[0];
 
     if(selection.value == "select"){
       return;
     }
 
-    var audio = document.getElementsByClassName("hidden")[0];
-    var volume = slider.value / 100.0;
+    audio.play();
 
     if(selection.value == "party-horn" && volume != 0){
       jsConfetti.addConfetti({});
     }
-
-    audio.volume = volume;
-    audio.play();
   })
 }
