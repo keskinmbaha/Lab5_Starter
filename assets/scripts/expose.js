@@ -92,7 +92,7 @@ function buttonClick (jsConfetti){
 
     audio.play();
 
-    if(selection.value == "party-horn" && volume != 0){
+    if(selection.value == "party-horn" && slider.value != 0){
       jsConfetti.addConfetti({});
     }
   })
